@@ -6,7 +6,7 @@ data "aws_vpc" "default" {
 }
 data "aws_availability_zones" "supported" {
   state       = "available"
-  exclude_names = ["ap-south-1"]
+  exclude_names = ["ap-south-1c"]
 }
 # Get default subnets
 data "aws_subnets" "default" {
