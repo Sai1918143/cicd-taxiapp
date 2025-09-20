@@ -4,13 +4,22 @@ provider "aws" {
 data "aws_vpc" "default" {
   default = true
 }
-
+data "aws_subnets" "default" {
+  filter {
+    name   = "vpc-id"
+    values = [data.aws_vpc.default.id]
+  }
 # Get default subnets
 data "aws_subnets" "default" {
   filter {
     name   = "vpc-id"
     values = [data.aws_vpc.default.id]
   }
+  filter {
+    name   = "availability-zone"
+    values = data.aws_availability_zones.supported.names
+  }
+}
 }
 
 resource "aws_instance" "ansible" {
