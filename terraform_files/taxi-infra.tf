@@ -6,7 +6,7 @@ data "aws_vpc" "default" {
 }
 data "aws_availability_zones" "supported" {
   state       = "available"
-  exclude_names = ["ap-south-1c"]
+  exclude_names = ["ap-south-1"]
 }
 # Get default subnets
 data "aws_subnets" "default" {
@@ -23,7 +23,7 @@ data "aws_subnets" "default" {
 resource "aws_instance" "ansible" {
     ami                     = "ami-07f07a6e1060cd2a8"
     instance_type           = "t2.medium"
-    key_name                = "taxi2"
+    key_name                = "new keypair"
     vpc_security_group_ids  = [aws_security_group.demo-sg.id]
     //subnet_id               = "subnet-077471d3c705ea769"
     tags                    = {
@@ -36,7 +36,7 @@ resource "aws_instance" "ansible" {
 resource "aws_instance" "jenkins_master" {
   ami                        = "ami-07f07a6e1060cd2a8"
   instance_type              = "t2.medium"
-  key_name                   = "taxi2"
+  key_name                   = "new keypair"
   vpc_security_group_ids     = [aws_security_group.demo-sg.id]
   
   tags                       = {
@@ -49,7 +49,7 @@ resource "aws_instance" "jenkins_master" {
 resource "aws_instance" "jenkins_slave" {
   ami                        = "ami-07f07a6e1060cd2a8"
   instance_type              = "t2.medium"
-  key_name                   = "taxi2"
+  key_name                   = "new keypair"
   vpc_security_group_ids     = [aws_security_group.demo-sg.id]
   
   tags                       = {
